@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Express – Delivered Fresh, Every Time</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo" onclick="showPage('home')">
+        <span class="logo-icon">🍜</span>
+        <span>Food<strong>Express</strong></span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" onclick="showPage('home')">Home</a></li>
+        <li><a href="#menu-section" onclick="scrollToMenu()">Menu</a></li>
+        <li><a href="#about-section" onclick="scrollToAbout()">About</a></li>
+        <li><a href="#contact-section" onclick="scrollToContact()">Contact</a></li>
+        <li><a href="#" onclick="showPage('orders')" id="navOrdersLink" style="display:none">My Orders</a></li>
+        <li><span id="navUserLabel" style="display:none;color:var(--accent);font-weight:600;padding:8px 10px;font-size:0.88rem"></span></li>
+        <li><a href="#" id="navAuthLink" onclick="showPage('login')" class="nav-btn-outline">Login</a></li>
+        <li>
+          <a href="#" onclick="showPage('cart')" class="nav-btn-cart">
+            <i class="fa fa-shopping-bag"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========== HOME PAGE ========== -->
+  <div id="page-home" class="page active">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-tag">🔥 Hot &amp; Fresh Delivery</p>
+        <h1 class="hero-title">Cravings<br><em>Delivered</em><br>in Minutes</h1>
+        <p class="hero-sub">From your city's finest kitchens straight to your doorstep. No fuss, no wait.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="scrollToMenu()">Order Now</button>
+          <button class="btn-ghost" onclick="scrollToAbout()">How It Works</button>
+        </div>
+        <div class="hero-stats">
+          <div><strong>50k+</strong><span>Happy Customers</span></div>
+          <div class="divider"></div>
+          <div><strong>200+</strong><span>Menu Items</span></div>
+          <div class="divider"></div>
+          <div><strong>30 min</strong><span>Avg Delivery</span></div>
+        </div>
+      </div>
+      <div class="hero-float-card">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt="Food" />
+        <div>
+          <p class="float-title">Today's Special</p>
+          <p class="float-sub">Grilled Salmon Bowl</p>
+          <p class="float-price">₹349</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="categories-section">
+      <div class="container">
+        <h2 class="section-title">What Are You Craving?</h2>
+        <div class="categories-grid">
+          <div class="cat-card" onclick="filterMenu('pizza')">🍕<span>Pizza</span></div>
+          <div class="cat-card" onclick="filterMenu('burger')">🍔<span>Burgers</span></div>
+          <div class="cat-card" onclick="filterMenu('sushi')">🍣<span>Sushi</span></div>
+          <div class="cat-card" onclick="filterMenu('pasta')">🍝<span>Pasta</span></div>
+          <div class="cat-card" onclick="filterMenu('dessert')">🍰<span>Desserts</span></div>
+          <div class="cat-card" onclick="filterMenu('drink')">🥤<span>Drinks</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED MENU -->
+    <section class="menu-section" id="menu-section">
+      <div class="container">
+        <p class="section-tag">Chef's Picks</p>
+        <h2 class="section-title">Featured Menu</h2>
+        <div class="filter-tabs" id="filterTabs">
+          <button class="tab active" data-filter="all">All</button>
+          <button class="tab" data-filter="pizza">Pizza</button>
+          <button class="tab" data-filter="burger">Burger</button>
+          <button class="tab" data-filter="sushi">Sushi</button>
+          <button class="tab" data-filter="pasta">Pasta</button>
+          <button class="tab" data-filter="dessert">Dessert</button>
+        </div>
+        <div class="food-grid" id="foodGrid"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about-section">
+      <div class="container about-grid">
+        <div class="about-image-wrap">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Our Kitchen" />
+          <div class="about-badge">
+            <strong>5★</strong>
+            <span>Rated by 50k+ Users</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="section-tag">About Us</p>
+          <h2 class="section-title left">We Cook With <em>Passion</em></h2>
+          <p>Food Express was born from a simple belief — everyone deserves a great meal, delivered fast. We partner with the city's top restaurants and home chefs to bring you an unmatched variety of cuisines.</p>
+          <ul class="about-features">
+            <li><i class="fa fa-check-circle"></i> Farm-fresh, quality-checked ingredients</li>
+            <li><i class="fa fa-check-circle"></i> Real-time GPS order tracking</li>
+            <li><i class="fa fa-check-circle"></i> Contactless, eco-friendly packaging</li>
+            <li><i class="fa fa-check-circle"></i> 24/7 customer support</li>
+          </ul>
+          <button class="btn-primary" onclick="scrollToMenu()">Explore Menu</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="hiw-section">
+      <div class="container">
+        <p class="section-tag center">Simple Steps</p>
+        <h2 class="section-title center">How It Works</h2>
+        <div class="hiw-grid">
+          <div class="hiw-card">
+            <div class="hiw-icon">🔍</div>
+            <h3>Browse</h3>
+            <p>Explore hundreds of dishes from top restaurants near you.</p>
+          </div>
+          <div class="hiw-arrow">→</div>
+          <div class="hiw-card">
+            <div class="hiw-icon">🛒</div>
+            <h3>Select</h3>
+            <p>Add your favourites to the cart and customize your order.</p>
+          </div>
+          <div class="hiw-arrow">→</div>
+          <div class="hiw-card">
+            <div class="hiw-icon">🚀</div>
+            <h3>Delivered</h3>
+            <p>Sit back while we rush your meal hot and fresh to your door.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="reviews-section">
+      <div class="container">
+        <p class="section-tag center">What Customers Say</p>
+        <h2 class="section-title center">Real Reviews</h2>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Fastest delivery I've ever experienced. The Butter Chicken was perfectly packed and piping hot!"</p>
+            <div class="reviewer">
+              <img src="https://i.pravatar.cc/48?img=12" alt="Priya" />
+              <div><strong>Priya Sharma</strong><span>Hyderabad</span></div>
+            </div>
+          </div>
+          <div class="review-card featured-review">
+            <div class="stars">★★★★★</div>
+            <p>"I order twice a week. The variety is insane and every restaurant is high quality. Food Express is my go-to!"</p>
+            <div class="reviewer">
+              <img src="https://i.pravatar.cc/48?img=33" alt="Rahul" />
+              <div><strong>Rahul Verma</strong><span>Bengaluru</span></div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★☆</div>
+            <p>"Loved the sushi platter! Arrived in great condition with beautiful packaging. Will definitely order again."</p>
+            <div class="reviewer">
+              <img src="https://i.pravatar.cc/48?img=47" alt="Ananya" />
+              <div><strong>Ananya Iyer</strong><span>Chennai</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact-section">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <p class="section-tag">Get In Touch</p>
+          <h2 class="section-title left">We'd Love to <em>Hear</em> From You</h2>
+          <div class="contact-details">
+            <div><i class="fa fa-map-marker-alt"></i><span>mcdonald's ibrahimpatnam </span></div>
+            <div><i class="fa fa-phone"></i><span>+91 7093069954</span></div>
+            <div><i class="fa fa-envelope"></i><span>hello@foodexpress.in</span></div>
+            <div><i class="fa fa-clock"></i><span>Open: 9 AM – 11 PM, Daily</span></div>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm" onsubmit="submitContact(event)">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Rahul Kumar" required />
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="5" placeholder="Tell us how we can help..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-width">Send Message <i class="fa fa-paper-plane"></i></button>
+          <p class="form-success" id="contactSuccess">✅ Thanks! We'll get back to you soon.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a class="logo light" href="#">🍜 Food<strong>Express</strong></a>
+          <p>Your cravings, our mission. Delivering happiness one meal at a time.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#" onclick="showPage('home')">Home</a></li>
+            <li><a href="#" onclick="scrollToMenu()">Menu</a></li>
+            <li><a href="#" onclick="scrollToAbout()">About</a></li>
+            <li><a href="#" onclick="scrollToContact()">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="#" onclick="showPage('login')">Login</a></li>
+            <li><a href="#" onclick="showPage('register')">Register</a></li>
+            <li><a href="#" onclick="showPage('cart')">My Cart</a></li>
+            <li><a href="#" onclick="showPage('orders')">My Orders</a></li>
+            <li><a href="#">Track Order</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <ul>
+            <li><i class="fa fa-map-marker-alt"></i> Guntur, AP</li>
+            <li><i class="fa fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fa fa-envelope"></i> hello@foodexpress.in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 FoodExpress. Made with ❤️ in India.</p>
+      </div>
+    </footer>
+
+  </div><!-- end page-home -->
+
+  <!-- ========== LOGIN PAGE ========== -->
+  <div id="page-login" class="page auth-page">
+    <div class="auth-container">
+      <div class="auth-visual">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=700&q=80" alt="Food" />
+        <div class="auth-visual-overlay">
+          <p class="auth-visual-tag">🍜 FoodExpress</p>
+          <h2>Good food is just one login away.</h2>
+        </div>
+      </div>
+      <div class="auth-form-wrap">
+        <button class="back-btn" onclick="showPage('home')"><i class="fa fa-arrow-left"></i> Back</button>
+        <div class="auth-logo">🍜 Food<strong>Express</strong></div>
+        <h2>Welcome Back!</h2>
+        <p class="auth-sub">Sign in to your account to continue ordering.</p>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-icon"><i class="fa fa-envelope"></i><input type="email" placeholder="you@example.com" required /></div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-icon"><i class="fa fa-lock"></i><input type="password" placeholder="••••••••" required /></div>
+          </div>
+          <div class="form-options">
+            <label class="checkbox-label"><input type="checkbox" /> Remember me</label>
+            <a href="#">Forgot password?</a>
+          </div>
+          <p id="loginError" class="auth-error"></p>
+          <button type="submit" class="btn-primary full-width">Login <i class="fa fa-sign-in-alt"></i></button>
+        </form>
+        <p class="auth-switch">Don't have an account? <a href="#" onclick="showPage('register')">Register</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== REGISTER PAGE ========== -->
+  <div id="page-register" class="page auth-page">
+    <div class="auth-container">
+      <div class="auth-visual">
+        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=700&q=80" alt="Food" />
+        <div class="auth-visual-overlay">
+          <p class="auth-visual-tag">🍜 FoodExpress</p>
+          <h2>Join thousands of happy food lovers.</h2>
+        </div>
+      </div>
+      <div class="auth-form-wrap">
+        <button class="back-btn" onclick="showPage('home')"><i class="fa fa-arrow-left"></i> Back</button>
+        <div class="auth-logo">🍜 Food<strong>Express</strong></div>
+        <h2>Create Account</h2>
+        <p class="auth-sub">Start your food journey with us today.</p>
+        <form onsubmit="handleRegister(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <div class="input-icon"><i class="fa fa-user"></i><input type="text" placeholder="Rahul" required /></div>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <div class="input-icon"><i class="fa fa-user"></i><input type="text" placeholder="Kumar" required /></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-icon"><i class="fa fa-envelope"></i><input type="email" placeholder="you@example.com" required /></div>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <div class="input-icon"><i class="fa fa-phone"></i><input type="tel" placeholder="+91 98765 43210" required /></div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-icon"><i class="fa fa-lock"></i><input type="password" placeholder="Min 8 characters" required /></div>
+          </div>
+          <p id="registerError" class="auth-error"></p>
+          <button type="submit" class="btn-primary full-width">Create Account <i class="fa fa-user-plus"></i></button>
+        </form>
+        <p class="auth-switch">Already have an account? <a href="#" onclick="showPage('login')">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========== ORDERS PAGE ========== -->
+  <div id="page-orders" class="page">
+    <div class="cart-page-wrap">
+      <div class="cart-header">
+        <button class="back-btn" onclick="showPage('home')"><i class="fa fa-arrow-left"></i> Back to Home</button>
+        <h2>📦 My Orders</h2>
+      </div>
+      <div id="ordersList"></div>
+    </div>
+  </div>
+
+  <!-- ========== CART PAGE ========== -->
+  <div id="page-cart" class="page">
+    <div class="cart-page-wrap">
+      <div class="cart-header">
+        <button class="back-btn" onclick="showPage('home')"><i class="fa fa-arrow-left"></i> Continue Shopping</button>
+        <h2>🛒 Your Cart</h2>
+      </div>
+      <div class="cart-body">
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-summary" id="cartSummary"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
